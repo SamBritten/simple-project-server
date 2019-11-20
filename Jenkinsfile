@@ -18,12 +18,12 @@ pipeline {
         stage('Build') {
             steps {
                     sh 'mvn package -DskipTests'
-		    sh 'docker build -t="sam315/simple-project-server:latest" .'
+		    sh 'docker build -t="sam315/simple-project-server:${VERSION}" .'
                 }
             }
         stage('Deploy') {
             steps {
-                    sh 'docker push sam315/simple-project-server:latest'
+		    sh 'docker push sam315/simple-project-server:${VERSION}'
                 }
             }
 	 stage('Testing Environment') {

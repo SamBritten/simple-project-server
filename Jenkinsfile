@@ -6,7 +6,7 @@ pipeline {
     stages {
 	    stage('Version') {
 		    steps {
-			    echo "${version}"
+			    echo "${VERSION}"
 		    }
 	    }
         stage('Test') {

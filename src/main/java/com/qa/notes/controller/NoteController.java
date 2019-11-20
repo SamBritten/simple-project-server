@@ -26,7 +26,7 @@ import com.qa.notes.service.NoteService;
 
 @RestController
 @CrossOrigin("*")
-public class NoteController {
+/*public class NoteController {
 	
 	@Autowired
 	private NoteService service;
@@ -42,7 +42,7 @@ public class NoteController {
 	public NoteDto createNote(@RequestBody NoteDto note){
 		return service.createNote(note);
 	}
-	
+*/	
 	@RequestMapping(path = "note/", method = {RequestMethod.PUT})
 	@ResponseStatus(code = HttpStatus.OK)
 	public NoteDto updateNote(@RequestBody NoteDto note) throws NotFoundException{

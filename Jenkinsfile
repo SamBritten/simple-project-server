@@ -1,7 +1,14 @@
 pipeline {
     agent any
-
+	environment {
+    		VERSION = readMavenPom().getVersion()
+	}
     stages {
+	    stage('Version') {
+		    steps {
+			    echo "${VERSION}"
+		    }
+	    }
         stage('Test') {
             steps {
                     sh 'mvn test -Dtest=ControllerAndServiceSuite'
@@ -11,12 +18,12 @@ pipeline {
         stage('Build') {
             steps {
                     sh 'mvn package -DskipTests'
-		    sh 'docker build -t="sam315/simple-project-server:latest" .'
+		    sh 'docker build -t="sam315/simple-project-server:${VERSION}" .'
                 }
             }
         stage('Deploy') {
             steps {
-                    sh 'docker push sam315/simple-project-server:latest'
+		    sh 'docker push sam315/simple-project-server:${VERSION}'
                 }
             }
 	 stage('Testing Environment') {

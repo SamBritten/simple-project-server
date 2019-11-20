@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Testing Environment') {
+        stage('Test') {
             steps {
                     sh 'mvn test -Dtest=ControllerAndServiceSuite'
 		    sh 'mvn test -Dtest=IntegrationSuite'
@@ -17,7 +17,22 @@ pipeline {
         stage('Deploy') {
             steps {
                     sh 'docker push sam315/simple-project-server:latest'
+                }
             }
-        }
+	 stage('Testing Environment') {
+            steps {
+                echo "hello"
+                }
+            }
+         stage('Staging') {
+            steps {
+                echo "hello"
+                 }
+            }
+          stage('Production') {
+             steps {
+                echo "hello"
+                  }
+             }
     }
 }

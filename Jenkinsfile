@@ -1,7 +1,14 @@
 pipeline {
     agent any
-
+	environment {
+    		VERSION = readMavenPom().getVersion()
+	}
     stages {
+	    stage('Version') {
+		    steps {
+		    	echo "$(version)"
+		    }
+	    }
         stage('Test') {
             steps {
                     sh 'mvn test -Dtest=ControllerAndServiceSuite'
